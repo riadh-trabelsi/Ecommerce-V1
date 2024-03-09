@@ -19,7 +19,7 @@ function Router() {
             <Route path="/" element={<App />}>
               <Route path="products" element={<ProductsList />}>
                 <Route index element={<Products />} />
-                <Route path="OneProduct/:productId" element={<OneProduct />} />
+                <Route path="OneProduct/:productId" element={<OneProduct />} /> //declaring productId as params
               </Route>
               <Route index element={<Dashboard />} />
               <Route path="/sana" element={<Settings />} />

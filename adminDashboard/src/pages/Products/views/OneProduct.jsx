@@ -2,20 +2,19 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { getOneProduct } from "../../../store/productSlice";
+
 function OneProduct() {
-const [element,setElement]=useState({})
-
+  const element = useSelector((state) => state.products.product);
+  const dispatch = useDispatch();
   const { productId } = useParams();
-  console.log(typeof(id), "this is the params");
+  console.log(typeof productId, productId, "this is the params");
 
-useEffect(()=>{
-
-  axios.get("http://localhost:5173/data.json").then((response)=>{
-    console.log(response.data)
-    setElement(response.data.find((element)=>element.id===+productId))
-  }).catch((error)=>console.log(error))
-},[])
+  useEffect(() => {
+    dispatch(getOneProduct(productId));
+  }, []);
 
   return (
     <div style={{ paddingTop: 80 }}>
